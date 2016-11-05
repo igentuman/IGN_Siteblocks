@@ -67,12 +67,13 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Form extends Mage_Adminhtml
         ));
 
 
-        $fieldset->addField('content', 'textarea', array(
+        $fieldset->addField('content', 'editor', array(
             'name'      => 'content',
             'label'     => Mage::helper('siteblocks')->__('Content'),
             'title'     => Mage::helper('siteblocks')->__('Content'),
             'style'     => 'height:36em',
             'required'  => true,
+            'config'    => Mage::getSingleton('cms/wysiwyg_config')->getConfig()
 
         ));
 
@@ -83,4 +84,11 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Form extends Mage_Adminhtml
         return parent::_prepareForm();
     }
 
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
+            $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
+        }
+    }
 }

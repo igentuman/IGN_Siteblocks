@@ -45,7 +45,7 @@
                         </blocks_count>
                         <raw_text>
                             <label>Raw text</label>
-                            <frontend_type>textarea</frontend_type>
+                            <frontend_type>myeditor</frontend_type>
                             <sort_order>3</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_Website>1</show_in_Website>
