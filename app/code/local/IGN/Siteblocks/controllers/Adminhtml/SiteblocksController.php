@@ -22,7 +22,10 @@ class IGN_Siteblocks_Adminhtml_SiteblocksController extends Mage_Adminhtml_Contr
             Mage::registry('siteblocks_block')->setData($blockObject);
         }
         $this->loadLayout();
-        $this->_addContent($this->getLayout()->createBlock('siteblocks/adminhtml_siteblocks_edit'));
+        $this->
+            _addLeft($this->getLayout()->createBlock('siteblocks/adminhtml_siteblocks_edit_tabs'));
+        $this->
+            _addContent($this->getLayout()->createBlock('siteblocks/adminhtml_siteblocks_edit'));
         $this->renderLayout();
     }
 
