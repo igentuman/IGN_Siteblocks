@@ -7,11 +7,10 @@
             <action method="setCanLoadRulesJs"><flag>1</flag></action>
         </reference>
         <reference name="left">
-            <block type="siteblocks/adminhtml_siteblocks_edit_tabs" name="block_edit_tabs">
-                <block type="siteblocks/adminhtml_siteblocks_edit_tab_conditions" name="conditions_tab"/>
-                <action method="addTab"><name>conditions</name><block>conditions_tab</block></action>
-
-                <!--<action method="addTab"><name>conditions</name><block>siteblocks/adminhtml_siteblocks_edit_tab_conditions</block></action>-->
+            <block type="siteblocks/adminhtml_siteblocks_edit_tabs" name="siteblocks_tabs">
+               <!-- <block name="conditions_tab" type="siteblocks/adminhtml_siteblocks_edit_tab_conditions"/>
+                <action method="addTab"><name>my_conditions</name><block>conditions_tab</block></action>-->
+                <!--<action method="addTab"><name>my_conditions</name><block>siteblocks/adminhtml_siteblocks_edit_tab_conditions</block></action>-->
             </block>
         </reference>
     </adminhtml_siteblocks_edit>

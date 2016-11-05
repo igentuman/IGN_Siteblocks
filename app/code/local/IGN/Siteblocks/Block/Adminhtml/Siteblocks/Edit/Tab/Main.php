@@ -3,33 +3,13 @@
 class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Main extends Mage_Adminhtml_Block_Widget_Form
 {
 
-    public function getTabLabel()
-    {
-        return $this->__('Main');
-    }
-
-    public function getTabTitle()
-    {
-        return $this->__('Main');
-    }
-
-    public function canShowTab()
-    {
-        return true;
-    }
-
-    public function isHidden()
-    {
-        return false;
-    }
-
     /**
      * Init form
      */
     public function __construct()
     {
         parent::__construct();
-        $this->setId('block_form');
+        $this->setId('main_form');
         $this->setTitle(Mage::helper('siteblocks')->__('Block Information'));
     }
 
@@ -39,7 +19,7 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Main extends Mage_Admin
         $form = new Varien_Data_Form();
 
 
-        $form->setHtmlIdPrefix('block_');
+        $form->setHtmlIdPrefix('main_');
 
         $fieldset = $form->addFieldset('base_fieldset',
             array(
@@ -89,6 +69,7 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Main extends Mage_Admin
             'config'    => Mage::getSingleton('cms/wysiwyg_config')->getConfig()
 
         ));
+
 
         $form->setValues($model->getData());
         $this->setForm($form);

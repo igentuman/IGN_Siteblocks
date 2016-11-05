@@ -12,12 +12,20 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tabs extends Mage_Adminhtml
 
     protected function _prepareLayout()
     {
-        $this->addTab('main',array(
-            'label' => Mage::helper('siteblocks')->__('Main'),
-            'title' => Mage::helper('siteblocks')->__('Main'),
-            'content' => $this->getLayout()->createBlock('siteblocks/adminhtml_siteblocks_edit_tab_main')->toHtml(),
-            'active' => ($this->getRequest()->getParam('tab') == 'block_info_tabs_main') ? true : false,
+        $this->addTab('main_tab',array(
+            'label' => $this->__('Main'),
+            'title' => $this->__('Main'),
+            'content' => $this->getLayout()->createBlock('siteblocks/adminhtml_siteblocks_edit_tab_main')->toHtml()
         ));
+
+        $this->addTab('conditions_tab',array(
+            'label' => $this->__('Conditions'),
+            'title' => $this->__('Conditions'),
+            'content' => $this->getLayout()->createBlock('siteblocks/adminhtml_siteblocks_edit_tab_conditions')->toHtml()
+        ));
+
+        //$this->addTab('conditions_tab','siteblocks/adminhtml_siteblocks_edit_tab_conditions');
+
 
         return parent::_prepareLayout();
     }

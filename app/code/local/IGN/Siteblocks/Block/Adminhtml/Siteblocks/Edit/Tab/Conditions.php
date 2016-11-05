@@ -3,12 +3,12 @@
 class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Conditions extends Mage_Adminhtml_Block_Widget_Form implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
 
-    public function getTabLabel()
+    public function getTabTitle()
     {
         return $this->__('Conditions');
     }
 
-    public function getTabTitle()
+    public function getTabLabel()
     {
         return $this->__('Conditions');
     }
@@ -29,8 +29,8 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Conditions extends Mage
     public function __construct()
     {
         parent::__construct();
-        $this->setId('block_form');
-        $this->setTitle(Mage::helper('siteblocks')->__('Block Information'));
+        $this->setId('conditions_form');
+        $this->setTitle(Mage::helper('siteblocks')->__('Block Conditions'));
     }
 
     protected function _prepareForm()
@@ -40,6 +40,7 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Conditions extends Mage
 
 
         $form->setHtmlIdPrefix('block_');
+
 
         $model->getConditions()->setJsFormObject('block_conditions_fieldset');
 
@@ -63,5 +64,13 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Conditions extends Mage
         $this->setForm($form);
 
         return parent::_prepareForm();
+    }
+
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
+            $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
+        }
     }
 }
