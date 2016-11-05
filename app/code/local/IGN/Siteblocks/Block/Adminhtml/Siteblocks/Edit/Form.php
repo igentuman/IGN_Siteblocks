@@ -76,6 +76,23 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Form extends Mage_Adminhtml
             'config'    => Mage::getSingleton('cms/wysiwyg_config')->getConfig()
 
         ));
+        $model->getConditions()->setJsFormObject('block_conditions_fieldset');
+
+        $renderer = Mage::getBlockSingleton('adminhtml/widget_form_renderer_fieldset')
+            ->setTemplate('promo/fieldset.phtml')
+            ->setNewChildUrl($this->getUrl('*/promo_catalog/newConditionHtml/form/block_conditions_fieldset'));
+
+        $conditionsFieldset = $form->addFieldset('conditions_fieldset',
+            array(
+                'legend'=>Mage::helper('siteblocks')->__('Conditions'),
+                'class' => 'fieldset-wide')
+        )->setRenderer($renderer);
+        $conditionsFieldset->addField('conditions', 'text', array(
+            'name' => 'conditions',
+            'label' => Mage::helper('siteblocks')->__('Conditions'),
+            'title' => Mage::helper('siteblocks')->__('Conditions'),
+            'required' => true,
+        ))->setRule($model)->setRenderer(Mage::getBlockSingleton('rule/conditions'));
 
         $form->setValues($model->getData());
         $form->setUseContainer(true);

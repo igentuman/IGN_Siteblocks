@@ -61,14 +61,20 @@ class IGN_Siteblocks_Adminhtml_SiteblocksController extends Mage_Adminhtml_Contr
     {
         try {
             $id = $this->getRequest()->getParam('block_id');
+            /** @var IGN_Siteblocks_Model_Block $block */
             $block = Mage::getModel('siteblocks/block')->load($id);
             /*$block
                 ->setTitle($this->getRequest()->getParam('title'))
                 ->setContent($this->getRequest()->getParam('content'))
                 ->setBlockStatus($this->getRequest()->getParam('block_status'))
                 ->save();*/
+            $data = $this->getRequest()->getParams();
+            if (isset($data['rule']['conditions'])) {
+                $data['conditions'] = $data['rule']['conditions'];
+            }
+            unset($data['rule']);
             $block
-                ->setData($this->getRequest()->getParams());
+                ->loadPost($data);
             $this->_uploadFile('image',$block);
             $block
                 ->setCreatedAt(Mage::app()->getLocale()->date())
