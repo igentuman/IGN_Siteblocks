@@ -3,6 +3,26 @@
 class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Main extends Mage_Adminhtml_Block_Widget_Form
 {
 
+    public function getTabLabel()
+    {
+        return $this->__('Main');
+    }
+
+    public function getTabTitle()
+    {
+        return $this->__('Main');
+    }
+
+    public function canShowTab()
+    {
+        return true;
+    }
+
+    public function isHidden()
+    {
+        return false;
+    }
+
     /**
      * Init form
      */
@@ -16,14 +36,7 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Main extends Mage_Admin
     protected function _prepareForm()
     {
         $model = Mage::registry('siteblocks_block');
-        $form = new Varien_Data_Form(
-            array(
-                'id' => 'edit_form',
-                'action' => $this->getUrl('*/*/save',array('block_id'=>$this->getRequest()->getParam('block_id'))),
-                'method' => 'post',
-                'enctype' => 'multipart/form-data'
-            )
-        );
+        $form = new Varien_Data_Form();
 
 
         $form->setHtmlIdPrefix('block_');
@@ -76,23 +89,6 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tab_Main extends Mage_Admin
             'config'    => Mage::getSingleton('cms/wysiwyg_config')->getConfig()
 
         ));
-        $model->getConditions()->setJsFormObject('block_conditions_fieldset');
-
-        $renderer = Mage::getBlockSingleton('adminhtml/widget_form_renderer_fieldset')
-            ->setTemplate('promo/fieldset.phtml')
-            ->setNewChildUrl($this->getUrl('*/promo_catalog/newConditionHtml/form/block_conditions_fieldset'));
-
-        $conditionsFieldset = $form->addFieldset('conditions_fieldset',
-            array(
-                'legend'=>Mage::helper('siteblocks')->__('Conditions'),
-                'class' => 'fieldset-wide')
-        )->setRenderer($renderer);
-        $conditionsFieldset->addField('conditions', 'text', array(
-            'name' => 'conditions',
-            'label' => Mage::helper('siteblocks')->__('Conditions'),
-            'title' => Mage::helper('siteblocks')->__('Conditions'),
-            'required' => true,
-        ))->setRule($model)->setRenderer(Mage::getBlockSingleton('rule/conditions'));
 
         $form->setValues($model->getData());
         $this->setForm($form);

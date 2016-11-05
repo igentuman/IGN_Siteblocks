@@ -6,6 +6,14 @@
             <action method="setCanLoadExtJs"><flag>1</flag></action>
             <action method="setCanLoadRulesJs"><flag>1</flag></action>
         </reference>
+        <reference name="left">
+            <block type="siteblocks/adminhtml_siteblocks_edit_tabs" name="block_edit_tabs">
+                <block type="siteblocks/adminhtml_siteblocks_edit_tab_conditions" name="conditions_tab"/>
+                <action method="addTab"><name>conditions</name><block>conditions_tab</block></action>
+
+                <!--<action method="addTab"><name>conditions</name><block>siteblocks/adminhtml_siteblocks_edit_tab_conditions</block></action>-->
+            </block>
+        </reference>
     </adminhtml_siteblocks_edit>
 
     <adminhtml_system_config_edit>
