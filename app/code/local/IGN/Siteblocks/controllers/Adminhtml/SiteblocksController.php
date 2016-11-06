@@ -70,6 +70,17 @@ class IGN_Siteblocks_Adminhtml_SiteblocksController extends Mage_Adminhtml_Contr
                 ->setBlockStatus($this->getRequest()->getParam('block_status'))
                 ->save();*/
             $data = $this->getRequest()->getParams();
+            $links = $this->getRequest()->getPost('links', array());
+
+            if (array_key_exists('products', $links)) {
+                $selectedProducts = Mage::helper('adminhtml/js')->decodeGridSerializedInput($links['products']);
+                $products = array();
+                foreach($selectedProducts as $product => $position) {
+                    $products[$product] = isset($position['position']) ? $position['position'] : $product;
+                }
+                $data['products'] = $products;
+            }
+
             if (isset($data['rule']['conditions'])) {
                 $data['conditions'] = $data['rule']['conditions'];
             }
@@ -148,5 +159,18 @@ class IGN_Siteblocks_Adminhtml_SiteblocksController extends Mage_Adminhtml_Contr
 
         return $this->_redirect('*/*/');
 
+    }
+
+    public function productsgridAction()
+    {
+        $this->loadLayout()
+            ->renderLayout();
+    }
+
+    public function productsAction()
+    {
+
+        $this->loadLayout()
+            ->renderLayout();
     }
 }

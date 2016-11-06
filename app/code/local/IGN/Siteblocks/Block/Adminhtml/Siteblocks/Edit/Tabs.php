@@ -24,7 +24,7 @@ class IGN_Siteblocks_Block_Adminhtml_Siteblocks_Edit_Tabs extends Mage_Adminhtml
             'content' => $this->getLayout()->createBlock('siteblocks/adminhtml_siteblocks_edit_tab_conditions')->toHtml()
         ));
 
-        //$this->addTab('conditions_tab','siteblocks/adminhtml_siteblocks_edit_tab_conditions');
+        $this->addTab('products','siteblocks/adminhtml_siteblocks_edit_tab_products');
 
 
         return parent::_prepareLayout();

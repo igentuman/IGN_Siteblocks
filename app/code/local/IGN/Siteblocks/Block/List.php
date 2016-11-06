@@ -26,4 +26,17 @@ class IGN_Siteblocks_Block_List extends Mage_Core_Block_Template {
         return $html;
     }
 
+    public function getProductsList($block)
+    {
+        $products = $block->getProducts();
+        asort($products);
+        $collection = Mage::getResourceModel('catalog/product_collection')
+            ->addFieldToFilter('entity_id',array('in'=>array_keys($products)))
+            ->addAttributeToSelect('*');
+        /** @var Mage_Catalog_Block_Product_List $list */
+        $list = $this->getLayout()->createBlock('catalog/product_list');
+        $list->setCollection($collection);
+        $list->setTemplate('siteblocks/product/list.phtml');
+        return $list->toHtml();
+    }
 }
